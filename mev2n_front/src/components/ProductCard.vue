@@ -1,0 +1,59 @@
+<template>
+  <div class="card h-100">
+    <a href="#"
+      ><img
+        class="card-img-top"
+        :style="{ backgroundImage: `url(${imageUrl})` }"
+        style="
+          background-position: top;
+          background-repeat: no-repeat;
+          background-size: cover;
+          height: 250px;
+        "
+        alt=""
+    /></a>
+    <div class="card-body">
+      <h4 class="card-title">
+        <a href="#">{{ title }}</a>
+      </h4>
+      <h5>{{ price }}$</h5>
+      <p class="card-text">{{ description.slice(0, 100) }}...</p>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-info" @click="$emit('add-to-cart')" v-if="!inCart">
+        Add to Cart
+      </button>
+      <button class="btn btn-danger" @click="$emit('add-to-cart')" v-else>
+        Delete
+      </button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ProductCard',
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    price: {
+      type: Number,
+      default: 0,
+    },
+    imageUrl: {
+      type: String,
+      default: '',
+    },
+    inCart: {
+      type: Boolean,
+      default: false,
+    },
+    description: {
+      type: String,
+      default: '',
+    },
+  },
+}
+</script>
